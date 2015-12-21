@@ -1,14 +1,16 @@
 #include <iostream>
+#include <algorithm>
+#include <cstdlib>
 #include <cstring>
-#include <ctime>
+
 
 using namespace std;
 
 int sum ;
 int numberOfCuts;
-int cuts[1024];
-int used[1024]= {0}; // 0 means untested, 1 means pending, 2 works, 3 means waiting/not working
-int goal = 0;
+int cuts[128];
+bool used[128];
+int goal;
 
 bool DFS(int cur_length, int cnt, int cur_index)
 {
@@ -30,9 +32,10 @@ bool DFS(int cur_length, int cnt, int cur_index)
         return true;
       
       used[i] = 0;
+      
     }
     
-    if (cur_length + cuts[i] < goal)
+    else if (cur_length + cuts[i] < goal)
     {
      
       if(DFS(cur_length + cuts[i], cnt, i+1))
@@ -52,33 +55,21 @@ bool DFS(int cur_length, int cnt, int cur_index)
   return false;
 }
 
-void sort()
+
+
+bool compare(int a, int b)
 {
-  int i, j, k;
-  for(int i = 1; i < numberOfCuts; i++)
-  {
-    k = cuts[i];
-    j = i-1;
-    while(j >= 0 && cuts[j] < k )
-    {
-      cuts[j+1] = cuts[j];
-      j--;
-    }
-    cuts[j+1] = k;
-  }
+  return  a < b;
 }
 
 
 int main()
 {
   
-  
-  int start = clock();
   int i;
   
-  cin >> numberOfCuts;
   
-  while(numberOfCuts)
+  while( cin >> numberOfCuts && numberOfCuts)
   {
     sum = 0;
     
@@ -87,14 +78,16 @@ int main()
       cin >> cuts[i];
       sum += cuts[i];
     }
-     sort();
     
-    // find factors
+    sort(cuts, cuts + numberOfCuts,  compare);
+
+   
     for(goal = cuts[0]; goal <= sum; goal++)
     {
       
       if(sum % goal == 0)
       {
+        memset(used, 0, sizeof(used));
         
         if( DFS(0, 0, 0) )
         {
@@ -105,13 +98,9 @@ int main()
       
     }
 
-    memset(used, 0, 4*numberOfCuts);
-    cin >> numberOfCuts;
-
-    
+   
   }
-  int end = clock();
-  cout <<"time: "<< (end - start)/CLOCKS_PER_SEC << endl;
+ 
   return 0;
 }
 
