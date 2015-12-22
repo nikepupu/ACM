@@ -6,13 +6,9 @@
 
 using namespace std;
 
-int sum ;
-int numberOfCuts;
-int cuts[128];
-bool used[128];
-int goal;
 
-bool DFS(int cur_length, int cnt, int cur_index)
+
+bool DFS(int cur_length, int cnt, int cur_index, int goal, int *cuts, bool *used, int numberOfCuts, int sum)
 {
   if(sum == cnt * goal)
     return true;
@@ -28,17 +24,17 @@ bool DFS(int cur_length, int cnt, int cur_index)
     
     if (cur_length + cuts[i] == goal)
     {
-      if(DFS(0, cnt+1,0) )
+      if(DFS(0, cnt+1,0, goal, cuts, used, numberOfCuts, sum) )
         return true;
       
       used[i] = 0;
       
     }
     
-    else if (cur_length + cuts[i] < goal)
+    if (cur_length + cuts[i] < goal)
     {
      
-      if(DFS(cur_length + cuts[i], cnt, i+1))
+      if(DFS(cur_length + cuts[i], cnt, i+1, goal, cuts, used, numberOfCuts, sum))
         return true;
       
       else
@@ -59,12 +55,18 @@ bool DFS(int cur_length, int cnt, int cur_index)
 
 bool compare(int a, int b)
 {
-  return  a < b;
+  return  a > b;
 }
 
 
 int main()
 {
+  
+  int sum ;
+  int numberOfCuts;
+  int cuts[128];
+  bool used[128];
+  int goal;
   
   int i;
   
@@ -80,7 +82,7 @@ int main()
     }
     
     sort(cuts, cuts + numberOfCuts,  compare);
-
+    cout<< cuts[0]<<endl;
    
     for(goal = cuts[0]; goal <= sum; goal++)
     {
@@ -89,7 +91,7 @@ int main()
       {
         memset(used, 0, sizeof(used));
         
-        if( DFS(0, 0, 0) )
+        if( DFS(0, 0, 0, goal, cuts, used, numberOfCuts, sum) )
         {
           cout << goal << endl;
           break;
