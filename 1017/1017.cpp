@@ -1,128 +1,54 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <cmath>
 
 using namespace std;
 
-int packet[6];
+int a[6];
+const int lefts[4] = {0, 5, 3, 1};
 
-int min(int a, int b)
+int min(int b, int c)
 {
-  if (a < b)
-    return a;
-  else
+  if (b < c)
     return b;
+  else
+    return c;
 }
 
 
 int main()
 {
   int i;
-  int status, space;
+  int space, space2, extra;
+  int twobytwo, onebyone;
   int num;
   while(1)
   {
-    status = 0;
-    num = 0;
     
     for(i = 0; i <= 5; i++)
-    {
-      cin >> packet[i];
-      if(packet[i] > 0)
-        status = 1;
-    }
+      cin >> a[i];
     
-    if(status == 0)
+    
+    if(a[0] + a[1] + a[2] + a[3] + a[4] + a[5] == 0)
       break;
     
+    num = a[3] + a[4] + a[5] + ceil(a[2]/4.0);
+    space = 5 * a[3] + lefts[a[2]%4];
     
-      
-      if (packet[5]) // 6 * 6
-      {
-        num += packet[5];
-        packet[5] = 0;
-      }
-      
-      
-     while(packet[4]) // 5 * 5
-      {
-        num++;
-        packet[0] -= min(packet[0], 11);
-        packet[4]--;
-      }
-      
-      while(packet[3]) // 4 * 4
-      {
-        space = 20;
-        num++;
-        
-        if (packet[1])
-        {
-          int  a = min(packet[1],5);
-          space -= a * 4;
-      
-        }
-        
-        packet[0] -= min(packet[0],space);
-        
-        packet[3]--;
-      }
     
-      while(packet[2])// 3 * 3
-      {
-        space = 36;
-        int a = min(packet[2], 4);
-        packet[2] -= a;
-        space -= 9 * a;
-        if (a == 1)
-        {
-          int  b = min(packet[1],5); // 2 * 2
-          space -= 4 * b;
-          packet[1] -= b;
-          
-          
-          packet[0] -= min(packet[0],space);
-        }
-        
-        else if (a == 2)
-        {
-          int  b = min(packet[1],3);
-          space -= 4 * b;
-          packet[1] -= b;
-          packet[0] -= min(packet[0],space);
-        }
-        
-        else if (a == 3)
-        {
-          if (packet[1])
-          {
-            packet[1] -= 1;
-            space -= 4;
-          }
-          packet[0] -= min(packet[0],space);
-        }
-        
-        
-       
-        num++;
-      }
-      
-      
-      while (packet[1]) // 2 * 2
-      {
-        space = 36;
-        space -= 4 *( min(packet[1],9) );
-        packet[1] -= min(packet[1], 9);
-        packet[0] -= min(packet[0],space);
-        num++;
-      }
-      
-      if (packet[0])//1 * 1;
-      {
-        num += (packet[0]/36 + 1);
-      }
+    twobytwo = min(space, a[1]);
+    extra = ceil((a[1] - twobytwo)/18.0);
+    num += extra;
     
-      cout << num << endl;
+    space = num * 36 - (4 * a[1] + 9 * a[2] + 16 * a[3] + 25 * a[4] + 36 * a[5]);
+    onebyone = min(space, a[0]);
+    extra = ceil((a[0] - onebyone)/36.0);
+    num += extra;
+    
+    
+    
+    cout << num << endl;
     
   }// while(1)
   
