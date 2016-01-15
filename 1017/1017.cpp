@@ -38,7 +38,7 @@ int main()
     
     
     twobytwo = min(space, a[1]);
-    extra = ceil((a[1] - twobytwo)/18.0);
+    extra = ceil((a[1] - twobytwo)/9.0);
     num += extra;
     
     space = num * 36 - (4 * a[1] + 9 * a[2] + 16 * a[3] + 25 * a[4] + 36 * a[5]);
