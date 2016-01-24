@@ -5,43 +5,63 @@
 #include <vector>
 #include <climits>
 
-#define SIZE 1000
+
 using namespace std;
 
-struct City
-{
-  int adj[SIZE];
-  int cost;
-};
-
-
+const int inf = INT_MAX >> 1;
 
 int main()
 {
-  int n, m, i;
-  int a,b,c;
-  cin >>n>> m;
-  City *city = new City[n];
+  int n, m, i, j;
+  int a,b,c,cur;
   
-  for(i = 0; i < n; i++)
+  cin >> n >> m;
+  
+  vector<vector<int> > adj(n, vector<int>(n, inf));
+  
+  int *dist = new int[n];
+  int *vis = new int[n]();
+  
+  
+  for (int i = 0; i < n; i++)
+    dist[i] = inf;
+  
+  
+  dist[0] = 0;
+  
+  while(m--)
   {
-    city[i].cost = INT_MAX;
-    memset(city[i].adj, 0, SIZE*sizeof(int));
+    cin >> a >> b >> c;
+    if (adj[a-1][b-1] > c)
+    adj[a-1][b-1] = c;
   }
   
-  city[0].cost = 0;
-  
-  for(i = 0; i < m; i++)
+  for (i = 0; i < n; i++)
   {
-    cin >> a>>b>>c;
-    city[a-1].adj[b-1] = c;
+    cur = -1;
+    for (j = 0; j < n; j++)
+    {
+      if( vis[j] ) continue;
+      if (cur == -1 || dist[j] < dist[cur])
+        cur = j;
+    }
+    
+    vis[cur] = 1;
+    
+    for (j = 0; j < n; j++)
+    {
+      if (dist[cur] + adj[cur][j] < dist[j])
+        dist[j] = dist[cur] + adj[cur][j];
+    
+    }
+    
   }
   
-
-  auto compareFunc = [](int a, int b) { return a < b; };
-  priority_queue<City, vector<City>, decltype(compareFunc> list(city[0], city[n-1]);
-  
-  
+  if (dist[n-1] < inf)
+    cout << dist[n-1];
+  else
+    cout << -1;
+    
   
 
   return 0;
