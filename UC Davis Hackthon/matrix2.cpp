@@ -88,8 +88,6 @@ int main()
       cur2 = sum;
   }
   
-  //cout << << endl;
-  
   if (cur1 > cur2)
     cout << cur2;
   else
