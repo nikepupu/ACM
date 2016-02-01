@@ -1,6 +1,10 @@
 #include <iostream>
 #include <cstdlib>
-#include <cstring>
+#include <string>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+#include <set>
 
 using namespace std;
 

@@ -49,11 +49,10 @@ int main()
   for (int i = 0; i < n; i++ )
     for(int j = 0; j < m; j++)
     {
-      temp = matrix[i][j], count = 0;
-      while(1)
+      temp = matrix[i][j];
+      count = 0;
+      while(!is_prime(temp))
       {
-        if (is_prime(temp))
-          break;
         temp++;
         count++;
         

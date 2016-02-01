@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const int inf = INT_MAX >> 1;
+const int inf = 1 << 10;
 
 int main()
 {
@@ -17,13 +17,19 @@ int main()
   
   cin >> n >> m;
   
-  vector<vector<int> > adj(n, vector<int>(n, inf));
+  vector<vector<int> > adj(n);
   
-  int *dist = new int[n];
-  int *vis = new int[n]();
+  vector<int> dist(n);
+  vector<bool> vis(n);
   
+  for(i = 0; i < n; ++i) {
+    adj[i] = vector<int>(n);
+    for(j = 0; j < n; ++j) {
+      adj[i][j] = inf;
+    }
+  }
   
-  for (int i = 0; i < n; i++)
+  for (i = 0; i < n; i++)
     dist[i] = inf;
   
   
@@ -50,8 +56,9 @@ int main()
     
     for (j = 0; j < n; j++)
     {
-      if (dist[cur] + adj[cur][j] < dist[j])
-        dist[j] = dist[cur] + adj[cur][j];
+      int path = dist[cur] + adj[cur][j];
+      if (path < dist[j])
+        dist[j] = path;
     
     }
     
