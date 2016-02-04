@@ -1,10 +1,4 @@
-3 5 4
-abc
-bca
-dac
-dbc
-cba
-(ab)(bc)(ca)
-abc
-(abc)(abc)(abc)
-(zyx)bc
+3
+98 980
+98 490
+299 1234
