@@ -8,22 +8,22 @@
 
 using namespace std;
 
-const int inf = 1 << 10;
+const long long inf = (1LL << 50);
 
 int main()
 {
-  int n, m, i, j;
-  int a,b,c,cur;
+  long long n, m, i, j;
+  long long a,b,c,cur;
   
   cin >> n >> m;
   
-  vector<vector<int> > adj(n);
+  vector<vector<long long> > adj(n);
   
-  vector<int> dist(n);
+  vector<long long> dist(n);
   vector<bool> vis(n);
   
   for(i = 0; i < n; ++i) {
-    adj[i] = vector<int>(n);
+    adj[i] = vector<long long>(n);
     for(j = 0; j < n; ++j) {
       adj[i][j] = inf;
     }
@@ -56,7 +56,7 @@ int main()
     
     for (j = 0; j < n; j++)
     {
-      int path = dist[cur] + adj[cur][j];
+      long long path = dist[cur] + adj[cur][j];
       if (path < dist[j])
         dist[j] = path;
     
