@@ -1,40 +1,85 @@
 #include <iostream>
 #include <cstdlib>
+#include <cctype>
 #include <string>
+#include <cstring>
 #include <cmath>
-#include <algorithm>
 #include <vector>
-#include <set>
+
 
 using namespace std;
 
-int main()
+int matrix[500][500];
+int n,m;
+
+char test[500];
+bool DFS(int pos, char c)
 {
-  int n;
-  unsigned long long a;
-  set<int> list;
-  cin >> n;
-  int count = 0;
-  unsigned long long sum = 0;
-  while(n--)
+  if (pos)
   {
-    cin >> a;
-    list.insert(a);
-    sum += a;
-    if (a%2 == 1)
-      count++;
+    test[pos-1] = c;
   }
   
-  if (count % 2 == 1)
-    for (set<int>::iterator it = list.begin(); it != list.end(); ++it )
+
+  for(int i = 0; i < pos-1;i++)
   {
-    if((*it) %2 == 1)
+    
+    if(matrix[pos-1][i])
     {
-      sum -= (*it);
-      break;
+      if(abs(test[i]-c) == 2)
+      {
+        return false;
+      }
     }
+    else{
+      
+      if(c == 'b')
+        return false;
+      if(abs(test[i]-c)!=2 )
+        return false;
+     
+    }
+    
+  }
+  
+  
+  if(pos == n)
+  {
+    test[pos] = '\0';
+    return true;
+  }
+  
+  
+  if (DFS(pos+1, 'a'))
+    return true;
+  else if(DFS(pos+1,'b'))
+    return true;
+  else if(DFS(pos+1, 'c'))
+    return true;
+  
+  return false;
+  
+}
+
+
+int main()
+{
+  
+  int v1, v2;
+  memset(matrix,0,sizeof(matrix));
+  cin >> n >> m;
+  string res;
+  for (int i = 1 ; i <= m; i++)
+  {
+    cin >> v1 >> v2;
+    matrix[v1-1][v2-1]=1;
+    matrix[v2-1][v1-1]=1;
+    
   }
 
-  cout << sum;
+  if(DFS(0,'a'))
+    cout <<"Yes"<<endl<<test<<endl;
+  else
+    cout <<"No"<<endl;
   return 0;
 }
