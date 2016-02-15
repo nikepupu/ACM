@@ -48,9 +48,7 @@ long long dijkstra (int source, int final)
     
   
   }
-  
   return dist[final];
-  
 }
 
 class road{
