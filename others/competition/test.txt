@@ -1,0 +1,14 @@
+1. graphs
+1022
+1065
+2. geometry
+1020
+2.1. idea
+1130
+2.2. technique
+1111 1065
+1265
+2.2.1. convex hull
+1271
+3. dynamic programming
+1244
