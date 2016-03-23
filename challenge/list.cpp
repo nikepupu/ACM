@@ -6,73 +6,65 @@
 #include <cmath>
 #include <algorithm>
 #include <vector>
-#include <set>
-#include <map>
-#include <queue>
 
 
 using namespace std;
+int letters[200]={0};
+string s, rs, t;
+vector<stirng> list;
 
+class tree{
+  bool l[26];
+  tree* child[26];
+public:
+  tree(){
+    memset(l,0,sizeof(l));
+    memset(child, 0, sizeof(child));
 
-multimap<char, string> list;
-set<string> res;
-int c = 0;
-int ind[27];
-
-bool search(string &cur, int pos, const int length)
-{
-  
-  if (pos == length)
-  {
-    res.insert(cur);
-    return true;
-  }//finished
-  
-  auto temp = list.equal_range(cur[pos]);
-  
-  for (auto it = temp.first; it != temp.second; it++  )
-  {
-  
-    if  ( cur != it->second && cur.substr(pos, (it->second).length() ).compare(it->second) == 0 )
-    {
-      if (search(cur, pos + (it->second).length(), length) )
-        return true;
-      
-    }// if compare
   }
-  
-  return false;
-}
+  void insert(string a, tree *root, int start, int end)
+  {
+    if (start == end)
+      return;
+    root->l[a[start]-'a'] = 1;
+    if (!root->child[a[start]-'a'])
+      root->child[a[start]-'a'] = new tree();
 
+    this->insert(a,root->child[a[start]-'a'], start+1, end);
+  }
+
+  int check(string ss, int start, int len, tree *cur_tree)
+  {
+    if (cur_tree->l[ss[start]-'a'] == 0)
+    {
+      return len;
+    }
+    
+  return check(ss, start+1, len+1, cur_tree->child[ss[start]-'a']);
+  }
+
+};
 
 int main()
 {
-  vector<string> res;
-  string str;
-  int fre[27] = {0};
-  int sum = 0;
-  
-  
-  while(cin >> str)
-  {
-    list.insert(pair<char, string>(str[0], str));
-    fre[str[0]-'a']++;
-  }
-  
-  
-  
-  for( auto it = list.begin(); it != list.end(); it++ )
-  {
-    
-    search( (*it).second, 0, (*it).second.length());
-  }
-  //go over the list from big to small
-  auto it = res.begin();
-  cout << *it << endl;
-  it++;
-  cout << *it << endl;
-  cout << "num of words can be constructed: " << res.size();
-  
+    tree * root = new tree();
+    while(cin >> s)
+    {
+      root->insert(s, root, i, j);
+      list.push_back(s);
+    }
+
+    for(int i = 0; i < list.size();i++)
+    {
+      
+        int len = 0;
+        
+        len = check(list[i], i, 0, root);
+        if (len == 0)
+          j--;
+    }
+
+    for()
+       
   return 0;
 }
-

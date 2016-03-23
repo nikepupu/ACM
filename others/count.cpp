@@ -41,12 +41,12 @@ void solve(string &s, int type)
  		for(int k = 0; k < 2; k++)
  			for(int p =0; p <= (k? s[i]-'0': 9); p++)
  			{	
- 				//if (!i &&!p) continue;
+ 				
  				int ni = i+1;
  				int nj = p;
  				int nk = (k && (p == int(s[i] - '0')));
  				dp[ni][nj][nk] += dp[i][j][k];
- 				//cout << dp[1][0][0]<<endl;
+ 				
  			}
 
  	if (type == 1)

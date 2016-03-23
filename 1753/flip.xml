@@ -1,0 +1,99 @@
+<problem id='flip' version='1.0'>
+  <judge time-limit='15'>
+
+    <test id='01'>
+      <file to='input'  href='flip.01'  />
+      <file to='answer' href='flip.01a' />
+    </test>
+    <test id='02'>
+      <file to='input'  href='flip.02'  />
+      <file to='answer' href='flip.02a' />
+    </test>
+    <test id='03'>
+      <file to='input'  href='flip.03'  />
+      <file to='answer' href='flip.03a' />
+    </test>
+    <test id='04'>
+      <file to='input'  href='flip.04'  />
+      <file to='answer' href='flip.04a' />
+    </test>
+    <test id='05'>
+      <file to='input'  href='flip.05'  />
+      <file to='answer' href='flip.05a' />
+    </test>
+    <test id='06'>
+      <file to='input'  href='flip.06'  />
+      <file to='answer' href='flip.06a' />
+    </test>
+    <test id='07'>
+      <file to='input'  href='flip.07'  />
+      <file to='answer' href='flip.07a' />
+    </test>
+    <test id='08'>
+      <file to='input'  href='flip.08'  />
+      <file to='answer' href='flip.08a' />
+    </test>
+    <test id='09'>
+      <file to='input'  href='flip.09'  />
+      <file to='answer' href='flip.09a' />
+    </test>
+    <test id='10'>
+      <file to='input'  href='flip.10'  />
+      <file to='answer' href='flip.10a' />
+    </test>
+    <test id='11'>
+      <file to='input'  href='flip.11'  />
+      <file to='answer' href='flip.11a' />
+    </test>
+    <test id='12'>
+      <file to='input'  href='flip.12'  />
+      <file to='answer' href='flip.12a' />
+    </test>
+    <test id='13'>
+      <file to='input'  href='flip.13'  />
+      <file to='answer' href='flip.13a' />
+    </test>
+    <test id='14'>
+      <file to='input'  href='flip.14'  />
+      <file to='answer' href='flip.14a' />
+    </test>
+    <test id='15'>
+      <file to='input'  href='flip.15'  />
+      <file to='answer' href='flip.15a' />
+    </test>
+    <test id='16'>
+      <file to='input'  href='flip.16'  />
+      <file to='answer' href='flip.16a' />
+    </test>
+    <test id='17'>
+      <file to='input'  href='flip.17'  />
+      <file to='answer' href='flip.17a' />
+    </test>
+    <test id='18'>
+      <file to='input'  href='flip.18'  />
+      <file to='answer' href='flip.18a' />
+    </test>
+    <test id='19'>
+      <file to='input'  href='flip.19'  />
+      <file to='answer' href='flip.19a' />
+    </test>
+    <test id='20'>
+      <file to='input'  href='flip.20'  />
+      <file to='answer' href='flip.20a' />
+    </test>
+
+    <do read='input' write='output' />
+
+    <program id='verify' language='pascal.borland.7.0' read='input output answer' write='result'>
+      <argument path-of='input'  />
+      <argument path-of='output' />
+      <argument path-of='answer' />
+      <argument path-of='result' />
+      <argument>-appes</argument>
+      <source name='flip.pas' href='CHECK/flip.pas' />
+      <header name='testlib.pas' href='/scripts/testlib.pas' />
+      <header name='symbols.pas' href='/scripts/symbols.pas' />
+    </program>
+
+  </judge>
+</problem>

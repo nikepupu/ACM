@@ -1,0 +1,14 @@
+build.all.configs.enabled=false
+build.proj.ref.configs.enabled=false
+eclipse.preferences.version=1
+environment/workspace/CPLUS_INCLUDE_PATH/delimiter=\:
+environment/workspace/CPLUS_INCLUDE_PATH/operation=append
+environment/workspace/CPLUS_INCLUDE_PATH/value=/usr/include/c++
+environment/workspace/C_INCLUDE_PATH/delimiter=\:
+environment/workspace/C_INCLUDE_PATH/operation=append
+environment/workspace/C_INCLUDE_PATH/value=/usr/include
+environment/workspace/append=true
+environment/workspace/appendContributed=true
+errorparser.default.ids=org.eclipse.cdt.autotools.core.ErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GmakeErrorParser;org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.CWDLocator;org.eclipse.cdt.core.MakeErrorParser
+language.settings.providers.workspace.prefs.toggle=true
+macros/workspace=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<macros/>\n
